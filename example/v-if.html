@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1 v-if="show === 'red'">{{txt}}</h1>
+        <h1 v-else-if="show === 'rew'">rew</h1>
+        <h1 v-else>else</h1>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                txt: 'ff is pig',
+                show: 'red'
+            }
+        })
+    </script>
+</body>
+</html>

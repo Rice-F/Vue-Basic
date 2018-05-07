@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>compoent html ref</title>
+    <script src="assets/js/vue.js"></script>
+    <!--
+        1.使用ref获取普通标签时，ref表示dom节点
+        2.使用ref获取组件时，ref表示组件对象
+    -->
+</head>
+<body>
+    <div id="root">
+        <h1 ref="h1" @click="handleChange">{{txt}}</h1>
+        <div class="counter">
+            <counter ref="one" @increment="handleSum"></counter>
+            <counter ref="two" @increment="handleSum"></counter>
+            <div>{{total}}</div>
+        </div>
+    </div>
+
+    <script>
+        Vue.component('counter',{
+            template: '<div @click="handleAdd">{{num}}</div>',
+            data(){
+                return {
+                    num: 0
+                }
+            },
+            methods: {
+                handleAdd(){
+                    this.num++;
+                    this.$emit('increment');
+                }
+            }
+        })
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                txt: 'this is h1',
+                total: 0
+            },
+            methods: {
+                handleChange(){
+                    this.$refs.h1.innerHTML = 'i am changed';
+                },
+                handleSum(){
+                    this.total = this.$refs.one.num + this.$refs.two.num;
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

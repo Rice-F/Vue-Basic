@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sonComponents verify</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <comp1 :gift="123" cont="1456"></comp1>
+    </div>
+
+    <script>
+        var comp1 = {
+            template: '<div>{{gift}}</div>',
+            props: {
+                gift: [ Number, String ],
+                cont: {
+                    type: String,
+                    required: true,
+                    validator(val){
+                        return (val.length < 5);
+                    }
+                }
+            }
+        }
+        var vm = new Vue({
+            el: '#root',
+            components: {
+                comp1: comp1
+            }
+        })
+    </script>
+</body>
+</html>

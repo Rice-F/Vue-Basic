@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>watch-methods-computed</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">{{fullName()}}</div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'pig',
+                lastName: 'zhang'
+            },
+            // computed: {
+            //     fullName(){
+            //         return this.firstName + ' ' + this.lastName;
+            //     }
+            // },
+            // watch: {
+            //     firstName(){
+            //         this.fullName = this.firstName + ' '+ this.lastName;
+            //     },
+            //     lastName(){
+            //         this.fullName = this.firstName + ' '+ this.lastName;
+            //     }
+            // },
+            methods: {
+                    fullName(){
+                        return this.firstName + ' ' + this.lastName;
+                    }
+            }
+        })
+    </script>
+</body>
+</html>

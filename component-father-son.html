@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component father son</title>
+    <script src="assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <counter @change="handleChange"></counter>
+        <counter @change="handleChange"></counter>
+        <div>{{total}}</div>
+    </div>
+
+    <script>
+        var counter = {
+            template: '<div @click="handleInc">{{num}}</div>',
+            data(){
+                return {
+                    num: 0
+                }
+            },
+            methods: {
+                handleInc(){
+                    this.num++;
+                    this.$emit('change',1);
+                }
+            }
+        }
+        var vm = new Vue({
+            el: '#root',
+            components: {
+                counter: counter
+            },
+            data: {
+                total: 0
+            },
+            methods: {
+                handleChange(step){
+                    this.total += step;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

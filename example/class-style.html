@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class style</title>
+    <script src="../assets/js/vue.js"></script>
+    <style>
+        .activited {
+            color: red;
+        }
+        .activated {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div :class = "{activited:isActivited}" @click = "handleChangeColor">click me to change color</div>
+        <div :class = "[activated]" @click = "handleChangeSize">click me to change size</div>
+        <div :style="[styleFont]" @click="handleChangeWeight">click me to change fontWeight</div>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                isActivited: true,
+                activated: '',
+                styleFont: {
+                    fontWeight: 'bold'
+                }
+            },
+            methods: {
+                handleChangeColor(){
+                    this.isActivited = !this.isActivited;
+                },
+                handleChangeSize(){
+                    this.activated = this.activated === 'activated' ?  '' : 'activated';
+                },
+                handleChangeWeight(){
+                    this.styleFont.fontWeight = this.styleFont.fontWeight === 'bold' ? '' : 'bold';
+                }
+            }
+        })
+    </script>
+</body>
+</html>

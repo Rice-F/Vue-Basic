@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for set</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <template>
+            <div
+                    v-for="(item,index) of list"
+                    :key="item.id"
+            >{{item.name}}-{{item.id}}</div>
+        </template>
+        <button @click="handleAdd">add item</button>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: [
+                    {
+                        id: '001',
+                        name: 'lee'
+                    },
+                    {
+                        id : '002',
+                        name: 'nike'
+                    },
+                    {
+                        id: '003',
+                        name: 'jordan'
+                    }
+                ]
+            },
+            methods: {
+                handleAdd(){
+                    this.$set(this.list,3,{id: '004',name: 'jordan'})
+                }
+            }
+        })
+    </script>
+</body>
+</html>

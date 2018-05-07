@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../assets/js/vue.js"></script>
+    <style>
+        .fontbig {
+            font-size: 36px;
+        }
+
+        .fontcolor {
+            color: red;
+        }
+
+        div {
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+<div id="fur">
+    123
+</div>
+<div id="rice" :class="{fontbig:isBig,fontcolor:isRed}" @click="handleClick">
+    456
+</div>
+<div id="div2">
+    <hr/>
+    <input type="text" :value="iv"/>
+    <div>{{iv}}</div>
+    <hr/>
+    <input type="text" v-model="ivv"/>
+    <div>{{ivv}}</div>
+</div>
+<script>
+    var fur = document.getElementById('fur');
+    fur.addEventListener('click', function () {
+        this.className = 'fontbig fontcolor';
+    })
+    new Vue({
+        el:'#div2',
+        data:{
+            iv:"",
+            ivv:""
+        }
+    })
+
+    new Vue({
+        el: '#rice',
+        data: {
+            isBig:false,
+            isRed:false
+        },
+        methods:{
+            handleClick:function () {
+                this.isBig = !this.isBig;
+                this.isRed = !this.isRed;
+            }
+        }
+    });
+</script>
+</body>
+</html>

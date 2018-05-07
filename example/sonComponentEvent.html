@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>son component native event</title>
+    <script src="../assets/js/vue.js"></script>
+    <!--
+    在子组件上使用原生事件，只要给原生事件名加上native属性即可
+    -->
+</head>
+<body>
+    <div id="root">
+        <son @click.native="handleClick"></son>
+    </div>
+
+    <script>
+        const son = {
+            template: '<div>son</div>'
+        }
+        const vm = new Vue({
+            el: '#root',
+            components: {
+                son: son
+            },
+            methods: {
+                handleClick(){
+                    alert('hhhh');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>mk-Vue</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        {{msg}}
+        <div @click="change">{{txt}}</div>
+        <div v-html="htm" :style="sty"></div>
+        <input type="text" v-model:value="txt">
+        <hr>
+        姓:<input type="text" v-model:value="firstName">
+        名:<input type="text" v-model:value="lastName">
+        <div>{{fullName}}</div>
+        <div>{{count}}</div>
+        <div v-show="show">{{msg}}</div>
+        <button @click="isShow">toggle</button>
+        <ul>
+            <li v-for="(item,index) in list">{{item}}{{index}}</li>
+        </ul>
+        <div :class="div"></div>
+    </div>
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                div:"div",
+                msg: "i am message",
+                txt: "i am text",
+                htm: "<h1>i am h1</h1>",
+                sty: "color: red",
+                firstName: "",
+                lastName: "",
+                count: 0,
+                show: true,
+                list: [1,2,3]
+            },
+            methods: {
+                change: function (){
+                    this.txt = "i am changed"
+                },
+                isShow: function (){
+                    this.show = !this.show;
+                }
+            },
+            computed: {
+                fullName: function(){
+                    return this.firstName + this.lastName;
+                }
+            },
+            watch: {
+                fullName: function (){
+                     this.count ++;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
