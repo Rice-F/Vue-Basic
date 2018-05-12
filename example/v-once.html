@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-once dynamic component</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <component :is="show"></component>
+        <!--<abc v-if="show==='abc'"></abc>-->
+        <!--<def v-if="show==='def'"></def>-->
+        <button @click="handleToggle">click toggle</button>
+    </div>
+
+    <script>
+        Vue.component('abc',{
+            template: '<div v-once>i am abc</div>'
+        })
+        Vue.component('def',{
+            template: '<div v-once>i am def</div>'
+        })
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                show: 'abc'
+            },
+            methods: {
+                handleToggle(){
+                    this.show = this.show === 'abc'? 'def':'abc';
+                }
+            }
+        })
+    </script>
+</body>
+</html>

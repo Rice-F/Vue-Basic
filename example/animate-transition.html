@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animate transiton</title>
+    <script src="../assets/js/vue.js"></script>
+    <link rel="stylesheet" href="../assets/css/animate.css">
+    <style>
+        .fade-enter,
+        .fade-leave-to{
+            opacity: 0;
+        }
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 1s;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <transition name="fade">
+            <div v-if="show">ff is pig</div>
+        </transition>
+        <button @click="handleTransitionFade">transition-fade</button>
+        <hr>
+        <transition
+                enter-active-class="animated wobble"
+                leave-active-class="animated swing"
+        >
+            <div v-if="show">ff is pig</div>
+        </transition>
+        <button @click="handleTransitionFade">transition-fade-animate</button>
+
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#root',
+            data: {
+                show: true
+            },
+            methods: {
+                handleTransitionFade(){
+                    this.show = !this.show;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>components communication</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <child content="ff"></child>
+        <child content="is pig"></child>
+    </div>
+
+    <script>
+        Vue.prototype.bus = new Vue();
+        Vue.component('child',{
+            template: '<div @click="handleClick">{{currentContent}}</div>',
+            props: {
+                content: String
+            },
+            data(){
+                return {
+                    currentContent: this.content
+                }
+            },
+            methods: {
+                handleClick(){
+                    this.bus.$emit('change',this.currentContent);
+                }
+            },
+            mounted(){
+                var currentThis = this;
+                this.bus.$on('change',function(msg){
+                    currentThis.currentContent = msg;
+                })
+            }
+        })
+        var vm = new Vue({
+            el: '#root'
+        })
+    </script>
+</body>
+</html>
